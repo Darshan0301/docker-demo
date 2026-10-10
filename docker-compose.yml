@@ -5,15 +5,15 @@ services:
     container_name: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: "992619"
-      MYSQL_DATABASE: docker_db
+      MYSQL_ROOT_PASSWORD: "Password"
+      MYSQL_DATABASE: Your_Database
    # ports:
     #  - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p992619" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pYourPassword" ]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -25,9 +25,9 @@ services:
       - "9090:9090"
     environment:
       SERVER_PORT: 9090
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/docker_db
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/YourDB
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: "992619"
+      SPRING_DATASOURCE_PASSWORD: "Your Password"
     depends_on:
       - mysql
     volumes:
